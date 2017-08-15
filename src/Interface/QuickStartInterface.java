@@ -1,5 +1,10 @@
 package Interface;
 
+import com.alibaba.fastjson.JSONObject;
+
+import java.util.List;
+
+import jsonObject.StarredFile;
 import okhttp3.OkHttpClient;
 
 /**
@@ -7,8 +12,13 @@ import okhttp3.OkHttpClient;
  */
 public interface QuickStartInterface {
 
-    String ping(OkHttpClient client,String SERVICE_URL);
+    String ping(OkHttpClient client);
 
-    public String obtainAuthToken(OkHttpClient client,String SERVICE_URL,String username,String password);
+    String obtainAuthToken(OkHttpClient client,String username,String password);
 
+    JSONObject checkAccountInfo(OkHttpClient client, String token);
+
+    JSONObject getServerInformation(OkHttpClient client);
+
+    List<StarredFile> listStarredFiles(OkHttpClient client, String token);
 }
