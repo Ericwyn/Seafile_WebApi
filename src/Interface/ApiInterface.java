@@ -16,7 +16,7 @@ import okhttp3.OkHttpClient;
 /**
  * Created by Ericwyn on 17-8-15.
  */
-public interface QuickStartInterface {
+public interface ApiInterface {
 
     String ping(OkHttpClient client);
 

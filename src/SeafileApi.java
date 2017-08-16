@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import Interface.QuickStartInterface;
+import Interface.ApiInterface;
 import jsonObject.FileDetail;
 import jsonObject.FileCommit;
 import jsonObject.Library;
@@ -24,7 +24,7 @@ import okhttp3.Response;
 /**
  * Created by Ericwyn on 17-8-15.
  */
-public class SeafileApi implements QuickStartInterface{
+public class SeafileApi implements ApiInterface {
     private String SERVICE_URL;
     public SeafileApi(String SERVICE_URL){
         this.SERVICE_URL=SERVICE_URL;

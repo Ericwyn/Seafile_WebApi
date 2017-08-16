@@ -75,12 +75,10 @@ public class SeafileApiTest {
 //            }
 //        }
 
-//        file1 id:81d17cefba33e77b52d4b3fc350dc2b9ed04e8ad
-//        file2 id:f19620522e4c3e86dbe2774b2f018d7a925fda8e
         String updateLink=api.getUpdateLink(client,token,repo_id,"");
         System.out.println(updateLink);
 
-        api.updateFile(client,token,updateLink,file1,"/testfile2.txt");
+        api.updateFile(client,token,updateLink,file1,"/test/upload/testfile2.txt");
 
 
 
