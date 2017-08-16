@@ -1,7 +1,7 @@
 # Seafile_WebAPI
 Seafile webapi implemented by java,Base on the Seafile Web API V2.1
 
-## API list
+## List of the API
  - ping
  - obtainAuthToken
  - checkAccountInfo
