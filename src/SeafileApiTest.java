@@ -1,14 +1,4 @@
-import com.alibaba.fastjson.JSONObject;
-
-import java.io.File;
-import java.util.List;
-
-import jsonObject.FileDetail;
-import jsonObject.FileCommit;
 import jsonObject.Library;
-import jsonObject.LibraryHistory;
-import jsonObject.StarredFile;
-import jsonObject.UploadFileRes;
 import okhttp3.OkHttpClient;
 
 /**
@@ -16,17 +6,18 @@ import okhttp3.OkHttpClient;
  */
 public class SeafileApiTest {
     public static final String SERVICE_URL = "https://cloud.meetwhy.com";
+    public static final String FILE_SERVER_ROOT="https://cloud.meetwhy.com/seafhttp";
 
     public static void main(String[] args) {
 
         OkHttpClient client = new OkHttpClient();
-        SeafileApi api = new SeafileApi(SERVICE_URL);
+        SeafileApi api = new SeafileApi(SERVICE_URL,FILE_SERVER_ROOT);
 
 //        String ping = api.ping(client);
 //        System.out.println("ping = " + ping);
 ////
         String token = api.obtainAuthToken(client, Account.username, Account.password);
-//        System.out.println("token = " + token);
+        System.out.println("token = " + token);
 //
 //        JSONObject accountName=api.checkAccountInfo(client,token);
 //        System.out.println("accountName = " + accountName.getString("name"));
@@ -44,13 +35,16 @@ public class SeafileApiTest {
 //        }
 //
         String repo_id = api.listLibraries(client, token).get(0).getId();
-//        System.out.println(repo_id);
+        System.out.println("the repo_id = "+repo_id);
         Library libraryInfo = api.getLibraryInfo(client, token, repo_id);
-        System.out.println("libraryInfo = " + libraryInfo.getName());
-//
+        System.out.println("the library name of the repo_id = " + libraryInfo.getName());
+
 //        List<LibraryHistory> historyLists=api.getLibraryHistory(client,token,repo_id);
 //        System.out.println(historyLists.get(0).getName());
-//
+
+//        String downloadLink=api.getFileDownloadLink(client,token,repo_id,"/头像.png",true);
+//        System.out.println("downloadLink = " + downloadLink);
+
 //        FileDetail fileDetail = api.getFileDetail(client, token, repo_id, "/头像.png");
 //        String fileName = fileDetail.getName();
 //        String fileId = fileDetail.getId();
@@ -66,7 +60,7 @@ public class SeafileApiTest {
 //        String uploadLink=api.getUploadLink(client,token,repo_id,"");
 //        System.out.println(uploadLink);
 //
-        File file1=new File("testfiles/testfile1.txt");
+//        File file1=new File("testfiles/testfile1.txt");
 //        File file2=new File("testfiles/testfile2.txt");
 //        if(file1.isFile() && file2.isFile()){
 //            List<UploadFileRes> uploadFileResList=api.uploadFile(client,token,uploadLink,"/test/upload/","",file1,file2);
@@ -75,10 +69,26 @@ public class SeafileApiTest {
 //            }
 //        }
 
-        String updateLink=api.getUpdateLink(client,token,repo_id,"");
-        System.out.println(updateLink);
+//        String updateLink=api.getUpdateLink(client,token,repo_id,"");
+//        System.out.println(updateLink);
+//
+//        api.updateFile(client,token,updateLink,file1,"/test/upload/testfile2.txt");
 
-        api.updateFile(client,token,updateLink,file1,"/test/upload/testfile2.txt");
+//        List<DirectoryEntry> directoryEntries=api.listDirEntriesByP(client,token,repo_id,"/test");
+//        System.out.println(directoryEntries);
+
+//        List<DirectoryEntry> directoryEntries3=api.listAllDirEntries(client,token,repo_id);
+//        System.out.println(directoryEntries3);
+
+//        api.createNewDir(client,token,repo_id,"/test2");
+//        api.renameDir(client,token,repo_id,"/test2","test3");
+//        api.deleteDir(client,token,repo_id,"/test3");
+
+//        String downDirToken=api.getDirDownloadToken(client,token,repo_id,"/","test");
+//        System.out.println("downDirToken = " + downDirToken);
+
+//        boolean dirDownloadFlag1 = api.queryZipProgress(client,token,"66b333cb-7800-4829-bb86-e2d3d715b84d");
+//        System.out.println("dirDownloadFlag1 = " + dirDownloadFlag1);
 
 
 

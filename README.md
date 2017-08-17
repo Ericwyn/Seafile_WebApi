@@ -2,32 +2,56 @@
 Seafile webapi implemented by java,Base on the Seafile Web API V2.1
 
 ## List of the API
- - ping
- - obtainAuthToken
- - checkAccountInfo
- - getServerInformation
- - listStarredFiles
- - listLibraries
- - getLibraryInfo
- - getLibraryHistory
- - getFileDetail
- - getFileHistory
- - createFile
- - renameFile
- - moveFile
- - revertFile
- - deleteFile
- - getUploadLink
- - uploadFile
- - getUpdateLink
- - updateFile
-
+ - Account
+    - ping()
+    - obtainAuthToken()
+    - checkAccountInfo()
+    - getServerInformation()
+ - Starred Files
+    - listStarredFiles()
+ - Library
+    - listLibraries()
+    - getLibraryInfo()
+    - getLibraryHistory()
+ - File
+    - getFileDownloadLink()
+    - getFileDetail()
+    - getFileHistory()
+    - createFile()
+    - renameFile()
+    - moveFile()
+    - revertFile()
+    - deleteFile()
+    - upload File
+        - getUploadLink()
+        - uploadFile()
+    - update File
+        - getUpdateLink()
+        - updateFile()
+ - Directory
+     - List Directories
+        - listDirEntriesByP()
+        - listAllDirEntries()
+     - createNewDir()
+     - renameDir()
+     - deleteDir()
+     - downloadDirectory
+         - getDirDownloadToken()
+         - queryZipProgress()
+         - getDirDownloadLink()
+     - ~~revertDirectory()~~
+ 
+ 
 ## Examples
 
-    String SERVICE_URL="https://cloud.seafile.com";
-    OkHttpClient client=new OkHttpClient();
-    SeafileApi api=new SeafileApi(SERVICE_URL);
-    String token = api.obtainAuthToken(client, Account.username,Account.password);
+    String SERVICE_URL= "https://cloud.seafile.com";
+    String FILE_SERVER_ROOT = "https://cloud.seafile.com/seafhttp";
+    
+    OkHttpClient client = new OkHttpClient();
+    
+    SeafileApi api = new SeafileApi(SERVICE_URL, FILE_SERVER_ROOT);
+    String token = api.obtainAuthToken(client, Account.username, Account.password);
+    
     System.out.println("token = " + token);
 
 ## Dependency
