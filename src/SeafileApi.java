@@ -231,6 +231,82 @@ public class SeafileApi implements ApiInterface {
         return null;
     }
 
+    /**
+     * create a new Library
+     *
+     * @param client
+     * @param token
+     * @param libName   the name of the library
+     * @param desc      the description of the creating
+     *                  can be null, will defaults to "new repo"
+     * @param password  the password of the library, needed by encrypt library
+     *                  can be null
+     *                  but in my test ,this parameter look likes invalid ?
+     * @return
+     */
+    @Override
+    public JSONObject createNewLibrary(OkHttpClient client, String token, String libName, String desc, String password) {
+        FormBody.Builder builder=new FormBody.Builder()
+                .add("name",libName);
+        if(desc != null){
+            builder.add("desc",desc);
+        }
+        if(password != null){
+            builder.add("password",password);
+        }
+        RequestBody requestBody=builder.build();
+        Request request=new Request.Builder()
+                .header("Content-Type","application/x-www-form-urlencoded")
+                .header("Authorization","Token "+token)
+                .header("Accept","application/json")
+                .header("indent","4")
+                .post(requestBody)
+                .url(SERVICE_URL+"/api2/repos/")
+                .build();
+        try (Response response=client.newCall(request).execute()){
+            if(response.isSuccessful()){
+                return parseJson(response.body().string());
+            }else {
+                System.out.println(response.code());
+                System.out.println(response.body().string());
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * you can use this method to dele the library
+     * i only test it to delete the no-encryption library
+     *
+     * @param client
+     * @param token
+     * @param repo_id
+     * @return
+     */
+    @Override
+    public boolean deleteLibrary(OkHttpClient client, String token, String repo_id) {
+        Request request=new Request.Builder()
+                .header("Content-Type","application/x-www-form-urlencoded")
+                .header("Authorization","Token "+token)
+                .header("Accept","application/json")
+                .header("indent","4")
+                .delete()
+                .url(SERVICE_URL+"/api2/repos/"+repo_id+"/")
+                .build();
+        try (Response response=client.newCall(request).execute()){
+            if(response.isSuccessful()){
+                return true;
+            }else {
+                System.out.println(response.code());
+                System.out.println(response.body().string());
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     /**
      * return the file download link

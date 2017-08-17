@@ -41,6 +41,10 @@ public interface ApiInterface {
 
     List<LibraryHistory> getLibraryHistory(OkHttpClient client, String token, String repo_id);
 
+    JSONObject createNewLibrary(OkHttpClient client, String token, String libName, String desc, String password);
+
+    boolean deleteLibrary(OkHttpClient client,String token,String repo_id);
+
     //File API
     String getFileDownloadLink(OkHttpClient client,String token,String repo_id,String p,boolean reuse);
 

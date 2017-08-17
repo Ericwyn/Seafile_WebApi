@@ -13,6 +13,8 @@ Seafile_webapi is the Web api of Seafile implemented by java,all of them base on
     - listLibraries()
     - getLibraryInfo()
     - getLibraryHistory()
+    - createLibrary()
+    - deleteLibrary()
  - File
     - getFileDownloadLink()
     - getFileDetail()

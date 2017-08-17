@@ -1,3 +1,7 @@
+import com.alibaba.fastjson.JSONObject;
+
+import java.util.List;
+
 import jsonObject.Library;
 import okhttp3.OkHttpClient;
 
@@ -15,10 +19,10 @@ public class SeafileApiTest {
 
 //        String ping = api.ping(client);
 //        System.out.println("ping = " + ping);
-////
-        String token = api.obtainAuthToken(client, Account.username, Account.password);
-        System.out.println("token = " + token);
-//
+
+//        String token = api.obtainAuthToken(client, Account.username, Account.password);
+//        System.out.println("token = " + token);
+
 //        JSONObject accountName=api.checkAccountInfo(client,token);
 //        System.out.println("accountName = " + accountName.getString("name"));
 //
@@ -33,11 +37,26 @@ public class SeafileApiTest {
 //        for (Library library:libraries){
 //            System.out.println(library.getId());
 //        }
-//
-        String repo_id = api.listLibraries(client, token).get(0).getId();
-        System.out.println("the repo_id = "+repo_id);
-        Library libraryInfo = api.getLibraryInfo(client, token, repo_id);
-        System.out.println("the library name of the repo_id = " + libraryInfo.getName());
+
+//        JSONObject jsonObject=api.createNewLibrary(client,token,"seanote",null,null);
+//        System.out.println(jsonObject.getString("email"));
+
+//        String deleteLibName="seanote";
+//        String delete_repo_id;
+//        List<Library> libraries=api.listLibraries(client,token);
+//        for (Library library:libraries){
+//            if(library.getName().equals(deleteLibName)){
+//                delete_repo_id=library.getId();
+//                System.out.println(delete_repo_id);
+//                api.deleteLibrary(client,token,delete_repo_id);
+//            }
+//        }
+
+
+//        String repo_id = api.listLibraries(client, token).get(0).getId();
+//        System.out.println("the repo_id = "+repo_id);
+//        Library libraryInfo = api.getLibraryInfo(client, token, repo_id);
+//        System.out.println("the library name of the repo_id = " + libraryInfo.getName());
 
 //        List<LibraryHistory> historyLists=api.getLibraryHistory(client,token,repo_id);
 //        System.out.println(historyLists.get(0).getName());
